@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class CampsiteInfo extends Component {
-  
   //Task 2: Moved card code from directory to here
   renderCampsite(campsite) {
     return(
@@ -18,7 +17,7 @@ class CampsiteInfo extends Component {
     )
   }
   
-  //Task 3: A description will appear on the right side of the description card
+  //Task 3: A description will appear on the right side of the description card once rendered
   renderComments(comments) {
     if(comments) {
       return (
