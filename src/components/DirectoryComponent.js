@@ -14,22 +14,6 @@ class Directory extends Component {
     this.setState({selectedCampsite: campsite});
   }
 
-  // renderSelectedCampsite(campsite) {
-  //   //this will make sure the campsite has an object in it. This will return back false if campsite is found null or undefined
-  //   if (campsite) { 
-  //     return (
-  //       <Card>
-  //         <CardImg top src={campsite.image} alt={campsite.name} />
-  //         <CardBody>
-  //           <CardTitle>{campsite.name}</CardTitle>
-  //           <CardText>{campsite.description}</CardText>
-  //         </CardBody>
-  //       </Card>
-  //     );
-  //   }
-  //   return <div />;
-  // }
-
   // This will pull data for each campsite to the state
   render() {
     const directory = this.props.campsites.map(campsite => {
