@@ -53,13 +53,8 @@ class CampsiteInfo extends Component {
           {this.renderComments(this.props.campsite.comments)}
         </div>
       );
-    } else {
-      return (
-        <div>
-
-        </div>
-      );
-    }
+      return <div />
+    } 
   }
 }
 
