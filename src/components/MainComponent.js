@@ -23,10 +23,16 @@ class Main extends Component {
       );
     }
 
+    //Any routing request will go through the switch component until it finds a matching route
+    //If there are none, it will end up at the redirect component - goes to home
     return (
       <div>
         <Header />
-        <Directory campsites={this.state.campsites}/>
+        <Switch>
+          <Route path='/home' component={HomePage} />
+          <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites}/> } />
+          <Redirect to='/home' />
+        </Switch>
         <Footer />
       </div>
     );
