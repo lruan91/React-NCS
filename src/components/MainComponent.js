@@ -15,13 +15,18 @@ class Main extends Component {
     };
   }
 
-
+  //Locally Scoped -This component is being defined inside of the main component so it's only accessible inside the main component 
   render() {
+    const HomePage = () => {
+      return (
+        <Home />
+      );
+    }
+
     return (
       <div>
         <Header />
-        <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)}/>
-        <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
+        <Directory campsites={this.state.campsites}/>
         <Footer />
       </div>
     );
