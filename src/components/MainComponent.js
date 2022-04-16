@@ -5,6 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CAMPSITES } from '../shared/campsites';
 import { COMMENTS } from '../shared/comments';
@@ -45,6 +46,7 @@ class Main extends Component {
 
     //Any routing request will go through the switch component until it finds a matching route
     //If there are none, it will end up at the redirect component - goes to home
+    //Week 3 Task 1: Added an exact route for aboutus and passed the partner data
     return (
       <div>
         <Header />
@@ -54,6 +56,8 @@ class Main extends Component {
           />} />
           <Route path='/directory/:campsiteId' component={CampsiteWithId} />
           <Route exact path='/contactus' component={Contact} />
+          <Route exact path='/aboutus' render = {() => <About partners={this.state.partners} />} />
+          <Route exact path='/aboutus' component={About} />
           <Redirect to='/home' />
         </Switch>
         <Footer />
