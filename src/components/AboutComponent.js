@@ -2,12 +2,14 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-
+//Week 3 Task 3: Deleted the <h5> inside the return statement. Added a media component, which will render the partners inside the <Media> tags
 function About(props) {
 
   const partners = props.partners.map(partner => {
     return (
-      <h5>{partner.name}</h5>
+      <Media tag='li' key={partner.id}>
+        <RenderPartner partner={partner} />
+      </Media>
     );
   });
 
