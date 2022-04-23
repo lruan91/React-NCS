@@ -1,7 +1,8 @@
 import React, { Component }  from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, 
-  Button} from 'reactstrap';
+  Button, Modal, ModalHeader, ModalBody, Label} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Control, LocalForm } from 'react-redux-form';
 
   //Task 2: Moved card code from directory to here
   function RenderCampsite({campsite}) {
@@ -72,7 +73,28 @@ import { Link } from 'react-router-dom';
   class CommentForm extends Component {
     constructor(props) {
       super(props);
+      this.state={
+        rating: '',
+        author: '',
+        text: '',
+      isModalOpen: false,
+      touched: {
+        rating: false,
+        author: false,
+        text: false
+      }
+      };
+      this.toggleModal = this.toggleModal.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      
     }
+
+    toggleModal() {
+      this.setState({
+        isModalOpen: !this.state.isModalOpen
+      });
+    }
+    
 
     render() {
       return (
@@ -80,6 +102,38 @@ import { Link } from 'react-router-dom';
           <Button outline className='fa-lg'>
             <i className="fa fa-pencil"> Submit Comment</i>
           </Button>
+          {/* Week 4 Task 2: Setting up a modal with author, text and textarea */}
+          <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+            <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+            <ModalBody>
+                <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                  <div className='form-group'>
+                    <Label htmlFor="rating" md={5}>Rating</Label>
+                      <Control.select model='.rating' id='rating' name='rating'
+                        className='form-control'>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                      </Control.select>
+                  </div>
+                  <div className='form-group'>
+                    <Label htmlFor="author" md={5}>Your Name</Label>
+                      <Control.text model='.author' id='author' name='author'
+                        placeholder='Your Name'
+                        className='form-control'
+                      />
+                  </div>
+                  <div className='form-group'>
+                    <Label htmlFor="text" md={2}>Comment</Label>
+                      <Control.textarea model='.text' id='text' name='text'
+                        className='form-control' rows='6' />
+                  </div>
+                  <Button type="submit" value="submit" color="primary">Submit</Button>
+                </LocalForm>
+              </ModalBody>
+          </Modal>
         </>
       )
     }
