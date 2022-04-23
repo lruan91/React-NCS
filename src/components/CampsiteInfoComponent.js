@@ -1,5 +1,6 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import React, { Component }  from 'react';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, 
+  Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
   //Task 2: Moved card code from directory to here
@@ -32,6 +33,7 @@ import { Link } from 'react-router-dom';
                 </div>
             );
           })}
+          <CommentForm />
         </div>
       );
     }
@@ -64,6 +66,23 @@ import { Link } from 'react-router-dom';
       );
     } 
     return <div />
+  }
+
+  //Week 4 Task 1: Rendering CommentForm to display the button
+  class CommentForm extends Component {
+    constructor(props) {
+      super(props);
+    }
+
+    render() {
+      return (
+        <>
+          <Button outline className='fa-lg'>
+            <i className="fa fa-pencil"> Submit Comment</i>
+          </Button>
+        </>
+      )
+    }
   }
   
 export default CampsiteInfo;
