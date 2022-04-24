@@ -2,7 +2,13 @@ import React, { Component }  from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, 
   Button, Modal, ModalHeader, ModalBody, Label} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm } from 'react-redux-form';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+
+  //Week 4 Task 3: Validation
+  // Making sure the length is no less than 2, or greater than 15 letters
+  const required = val => val && val.length;                                        
+  const maxLength = len => val => !val || (val.length <= len);
+  const minLength = len => val => val && (val.length >= len);
 
   //Task 2: Moved card code from directory to here
   function RenderCampsite({campsite}) {
@@ -69,37 +75,37 @@ import { Control, LocalForm } from 'react-redux-form';
     return <div />
   }
 
-  //Week 4 Task 1: Rendering CommentForm to display the button
+  //Week 4 Task 1: Created a CommentForm class comp. with a button
   class CommentForm extends Component {
     constructor(props) {
       super(props);
-      this.state={
+
+      this.state = {
         rating: '',
         author: '',
         text: '',
-      isModalOpen: false,
-      touched: {
-        rating: false,
-        author: false,
-        text: false
-      }
+        isModalOpen: false,
+        touched: {
+          author: false
+        }
       };
       this.toggleModal = this.toggleModal.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      
     }
-
     toggleModal() {
       this.setState({
         isModalOpen: !this.state.isModalOpen
       });
     }
-    
+    handleSubmit(values) {
+      console.log('Current state is: ' + JSON.stringify(values));
+      alert('Current state is: ' + JSON.stringify(values));
+    }
 
     render() {
       return (
         <>
-          <Button outline className='fa-lg'>
+          <Button outline onClick={this.toggleModal} className='fa-lg'>
             <i className="fa fa-pencil"> Submit Comment</i>
           </Button>
           {/* Week 4 Task 2: Setting up a modal with author, text and textarea */}
@@ -111,11 +117,11 @@ import { Control, LocalForm } from 'react-redux-form';
                     <Label htmlFor="rating" md={5}>Rating</Label>
                       <Control.select model='.rating' id='rating' name='rating'
                         className='form-control'>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
                       </Control.select>
                   </div>
                   <div className='form-group'>
@@ -123,7 +129,23 @@ import { Control, LocalForm } from 'react-redux-form';
                       <Control.text model='.author' id='author' name='author'
                         placeholder='Your Name'
                         className='form-control'
+                        validators={{
+                          required,
+                          minLength: minLength(2),
+                          maxLength: maxLength(15)
+                        }}
                       />
+                      <Errors
+                        className='text-danger'
+                        model='.author'
+                        show='touched'
+                        component='div'
+                        messages={{
+                          required: 'Required',
+                          minLength: 'Must be at least 2 characters',
+                          maxLength: 'Must be 15 characters or less'
+                      }}
+                    />
                   </div>
                   <div className='form-group'>
                     <Label htmlFor="text" md={2}>Comment</Label>
