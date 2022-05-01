@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
 //Week 3 Task 3: Deleted the <h5> inside the return statement. Added a media component, which will render the partners inside the <Media> tags
 function About(props) {
@@ -82,7 +83,7 @@ function RenderPartner({partner}) {
   if(partner) {
     return (
       <>
-        <Media object src={partner.image} alt={partner.name} width='150' />
+        <Media object src={baseUrl + partner.image} alt={partner.name} width='150' />
         <Media body className='ml-5 mb-4'>
           <Media heading>{partner.name}</Media>
           {partner.description}
