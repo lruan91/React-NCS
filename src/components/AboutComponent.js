@@ -60,11 +60,7 @@ function About(props) {
           <div className="col-12">
             <h3>Community Partners</h3>
           </div>
-          <div className="col mt-4">
-            <Media list>
-              {partners}
-            </Media>
-          </div>
+          <PartnerList partners={props.partners} />
         </div>
     </div>
   );
