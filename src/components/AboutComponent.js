@@ -69,6 +69,7 @@ function About(props) {
 //Week 3 Task 2: Added a functional component and deconstructed partner
 //Wk3Tk2: If statment checking if partner is true, if so then pass what's inside the first return. The images/partners will show up
 //Cont. If not true, an empty <div /> will be returned
+//Week 5 Task 1 added src to Media Object.
 function RenderPartner({partner}) {
   if(partner) {
     return (
@@ -83,7 +84,6 @@ function RenderPartner({partner}) {
   }
   return <div />
 }
-
 //Week 5 Task 1: Creating PartnerList functional comp and have if statements
 //Week 5 Task 1: moved const partners from the top to PartnerList
 //Week 5 Task 3: Adding Fade & Stagger to media components
@@ -117,5 +117,4 @@ function PartnerList(props) {
     </div>
   );
 }
-
 export default About;
