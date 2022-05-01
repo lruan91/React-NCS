@@ -37,9 +37,13 @@ class Contact extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  //Week 5 Task 2 updating the handleSubmit to postFeedback
     handleSubmit(values) {
-      console.log('Current state is: ' + JSON.stringify(values));
-      alert('current state is: ' + JSON.stringify(values));
+      // console.log('Current state is: ' + JSON.stringify(values));
+      // alert('current state is: ' + JSON.stringify(values));
+      // this.props.resetFeedbackForm();
+      this.props.postFeedback(values);
       this.props.resetFeedbackForm();
     }
   
